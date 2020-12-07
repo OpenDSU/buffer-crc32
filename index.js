@@ -1,4 +1,3 @@
-var Buffer = require('buffer').Buffer;
 
 var CRC_TABLE = [
   0x00000000, 0x77073096, 0xee0e612c, 0x990951ba, 0x076dc419,
@@ -60,25 +59,25 @@ if (typeof Int32Array !== 'undefined') {
 }
 
 function newEmptyBuffer(length) {
-  var buffer = new Buffer(length);
+  var buffer = new $$.Buffer(length);
   buffer.fill(0x00);
   return buffer;
 }
 
 function ensureBuffer(input) {
-  if (Buffer.isBuffer(input)) {
+  if ($$.Buffer.isBuffer(input)) {
     return input;
   }
 
   var hasNewBufferAPI =
-      typeof Buffer.alloc === "function" &&
-      typeof Buffer.from === "function";
+      typeof $$.Buffer.alloc === "function" &&
+      typeof $$.Buffer.from === "function";
 
   if (typeof input === "number") {
-    return hasNewBufferAPI ? Buffer.alloc(input) : newEmptyBuffer(input);
+    return hasNewBufferAPI ? $$.Buffer.alloc(input) : newEmptyBuffer(input);
   }
   else if (typeof input === "string") {
-    return hasNewBufferAPI ? Buffer.from(input) : new Buffer(input);
+    return hasNewBufferAPI ? $$.Buffer.from(input) : new $$.Buffer(input);
   }
   else {
     throw new Error("input must be buffer, number, or string, received " +
@@ -94,7 +93,7 @@ function bufferizeInt(num) {
 
 function _crc32(buf, previous) {
   buf = ensureBuffer(buf);
-  if (Buffer.isBuffer(previous)) {
+  if ($$.Buffer.isBuffer(previous)) {
     previous = previous.readUInt32BE(0);
   }
   var crc = ~~previous ^ -1;
