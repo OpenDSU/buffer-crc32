@@ -8,11 +8,13 @@ buffer, signed or unsigned data and has tests.
 Derived from the sample CRC implementation in the PNG specification: http://www.w3.org/TR/PNG/#D-CRCAppendix
 
 # install
+
 ```
 npm install buffer-crc32
 ```
 
 # example
+
 ```js
 var crc32 = require('buffer-crc32');
 // works with buffers
@@ -36,12 +38,15 @@ var finalCrc = crc32('bros', partialCrc); // -> <$$.Buffer 47 fa 55 70>
 ```
 
 # tests
+
 This was tested against the output of zlib's crc32 method. You can run
 the tests with`npm test` (requires tap)
 
 # see also
+
 https://github.com/alexgorbatchev/node-crc, `crc.buffer.crc32` also
 supports buffer inputs and return unsigned ints (thanks @tjholowaychuk).
 
 # license
+
 MIT/X11
